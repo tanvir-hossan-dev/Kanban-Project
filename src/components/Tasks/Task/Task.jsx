@@ -9,14 +9,14 @@ const Task = ({ Title, TitleColor, Delete }) => {
         <li className="py-4 bg-gray-100 text-black font-medium my-2 rounded-sm">hello</li>
         <li className="py-4 bg-gray-100 text-black font-medium my-2 rounded-sm">hello</li>
       </ul>
-      {Delete && <button className="btn w-[96%]  btn-error mb-2">{Delete}</button>}
+      {Delete && <button className="btn w-[96%] btn-error mb-2">{Delete}</button>}
     </div>
   );
 };
 
-Task.PropTypes = {
-  Title: PropTypes.object,
-  TitleColor: PropTypes.string,
+Task.propTypes = {
+  Title: PropTypes.string.isRequired,
+  TitleColor: PropTypes.string.isRequired,
   Delete: PropTypes.string,
 };
 
