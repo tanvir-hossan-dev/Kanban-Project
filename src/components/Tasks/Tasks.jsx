@@ -1,6 +1,7 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import Task from "./Task/Task";
+import PropTypes from "prop-types";
 
 const Tasks = ({ work, handleTrush }) => {
   return (
@@ -22,6 +23,11 @@ const Tasks = ({ work, handleTrush }) => {
       ))}
     </div>
   );
+};
+
+Tasks.propTypes = {
+  work: PropTypes.array,
+  handleTrush: PropTypes.func,
 };
 
 export default Tasks;

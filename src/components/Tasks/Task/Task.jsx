@@ -42,7 +42,9 @@ const Task = ({ Title, TitleColor, items, del, handleTrush }) => {
 Task.propTypes = {
   Title: PropTypes.string.isRequired,
   TitleColor: PropTypes.string.isRequired,
-  Delete: PropTypes.string,
+  del: PropTypes.string,
+  items: PropTypes.array,
+  handleTrush: PropTypes.func,
 };
 
 export default Task;
