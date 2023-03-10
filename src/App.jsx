@@ -3,6 +3,66 @@ import { DragDropContext } from "react-beautiful-dnd";
 import shortid from "shortid";
 import Tasks from "./components/Tasks/Tasks";
 
+let initialState = [
+  {
+    name: "To Do",
+    color: "bg-gray-300",
+    id: 1,
+    items: [
+      {
+        title: "ReactJS",
+        id: 1,
+      },
+      {
+        title: "NodeJS",
+        id: 2,
+      },
+      {
+        title: "ExpressJS",
+        id: 3,
+      },
+    ],
+  },
+  {
+    name: "Doing",
+    color: "bg-sky-300",
+    id: 2,
+    items: [
+      {
+        title: "NextJS",
+        id: 4,
+      },
+      {
+        title: "MongoDB",
+        id: 5,
+      },
+    ],
+  },
+  {
+    name: "Done",
+    color: "bg-emerald-300",
+    id: 3,
+    items: [
+      {
+        title: "PHP",
+        id: 6,
+      },
+    ],
+  },
+  {
+    name: "Trash",
+    delete: "Delete",
+    color: "bg-red-300",
+    id: 4,
+    items: [
+      {
+        title: "Redux",
+        id: 7,
+      },
+    ],
+  },
+];
+
 function App() {
   const [task, setTask] = useState("");
   const [error, setError] = useState("");
@@ -79,65 +139,5 @@ function App() {
     </>
   );
 }
-
-let initialState = [
-  {
-    name: "To Do",
-    color: "bg-gray-300",
-    id: 1,
-    items: [
-      {
-        title: "ReactJS",
-        id: 1,
-      },
-      {
-        title: "NodeJS",
-        id: 2,
-      },
-      {
-        title: "ExpressJS",
-        id: 3,
-      },
-    ],
-  },
-  {
-    name: "Doing",
-    color: "bg-sky-300",
-    id: 2,
-    items: [
-      {
-        title: "NodeJS",
-        id: 4,
-      },
-      {
-        title: "ExpressJS",
-        id: 5,
-      },
-    ],
-  },
-  {
-    name: "Done",
-    color: "bg-emerald-300",
-    id: 3,
-    items: [
-      {
-        title: "ExpressJS",
-        id: 6,
-      },
-    ],
-  },
-  {
-    name: "Trash",
-    delete: "Delete",
-    color: "bg-red-300",
-    id: 4,
-    items: [
-      {
-        title: "ExpressJS",
-        id: 7,
-      },
-    ],
-  },
-];
 
 export default App;
