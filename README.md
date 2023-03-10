@@ -2,6 +2,6 @@
 
 How to use
 
-1. clone this url.
-2. yarn i
+1. clone this https://github.com/tanvir-hossan-dev/Kanban-Project.git.
+2. npm i
 4. yarn run dev
