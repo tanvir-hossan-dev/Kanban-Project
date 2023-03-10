@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { DragDropContext } from "react-beautiful-dnd";
 import shortid from "shortid";
 import Tasks from "./components/Tasks/Tasks";
 
@@ -6,6 +7,7 @@ function App() {
   const [task, setTask] = useState("");
   const [error, setError] = useState("");
   const [work, setWork] = useState(initialState);
+  const [ready, setReady] = useState(false);
 
   const hanldeSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +23,30 @@ function App() {
       return setError("Write task");
     }
   };
+
+  const onDragEnd = (re) => {
+    if (!re.destination) return;
+    let newBoardData = work;
+    var dragItem = newBoardData[re.source.droppableId].items[re.source.index];
+    newBoardData[re.source.droppableId].items.splice(re.source.index, 1);
+    newBoardData[re.destination.droppableId].items.splice(re.destination.index, 0, dragItem);
+    setWork(newBoardData);
+  };
+
+  const handleTrush = () => {
+    work?.map((item) => {
+      if (item.name === "Trash") {
+        setReady(true);
+        return (item.items = []);
+      }
+    });
+    setWork(work);
+  };
+
+  useEffect(() => {
+    setReady(false);
+  }, [ready]);
+
   return (
     <>
       <div className="lg:px-[100px] px-4 text-center lg:mt-[100px] my-[20px]">
@@ -46,7 +72,9 @@ function App() {
           </button>
         </form>
         {/* Tasks section  */}
-        <Tasks work={work} />
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Tasks work={work} handleTrush={handleTrush} />
+        </DragDropContext>
       </div>
     </>
   );
@@ -56,6 +84,7 @@ let initialState = [
   {
     name: "To Do",
     color: "bg-gray-300",
+    id: 1,
     items: [
       {
         title: "ReactJS",
@@ -74,25 +103,26 @@ let initialState = [
   {
     name: "Doing",
     color: "bg-sky-300",
+    id: 2,
     items: [
       {
         title: "NodeJS",
-        id: 2,
+        id: 4,
       },
       {
         title: "ExpressJS",
-        id: 3,
+        id: 5,
       },
     ],
   },
-  ,
   {
     name: "Done",
     color: "bg-emerald-300",
+    id: 3,
     items: [
       {
         title: "ExpressJS",
-        id: 3,
+        id: 6,
       },
     ],
   },
@@ -100,10 +130,11 @@ let initialState = [
     name: "Trash",
     delete: "Delete",
     color: "bg-red-300",
+    id: 4,
     items: [
       {
         title: "ExpressJS",
-        id: 3,
+        id: 7,
       },
     ],
   },
